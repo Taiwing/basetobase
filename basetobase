@@ -1,0 +1,32 @@
+#!/bin/env bash
+
+BASES="binary octal decimal hexadecimal"
+
+function baseton() {
+	local n=0
+	case $1 in
+			"binary")		n=2		;;
+			"octal")		n=8		;;
+			"decimal")		n=10	;;
+			"hexadecimal")	n=16	;;
+	esac
+	return $((n))
+}
+
+for base1 in $BASES; do
+	for base2 in $BASES; do
+		if [ "$base1" != "$base2" ]; then
+			baseton $base1
+			b1=$?
+			baseton $base2
+			b2=$?
+			onel="${base1:0:1}to${base2:0:1}"
+			threel="${base1:0:3}to${base2:0:3}"
+			alll="${base1}to${base2}"
+			command="echo \"obase=$b2;ibase=$b1;\$1\" | bc;"
+			eval "function $onel() { $command }"
+			eval "function $threel() { $command }"
+			eval "function $alll() { $command }"
+		fi
+	done
+done
