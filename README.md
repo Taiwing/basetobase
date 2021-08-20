@@ -11,9 +11,9 @@ The syntax is: *inputbase*to*outputbase* number
 
 ex: to convert 0x80 to decimal the three following commands can be used:
 ```
-	hexadecimaltodecimal 80
-	hextodec 80
-	htod 80
+hexadecimaltodecimal 80
+hextodec 80
+htod 80
 ```
 all of them would output: `128`
 
